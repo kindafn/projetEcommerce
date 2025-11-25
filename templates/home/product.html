@@ -1,0 +1,38 @@
+<!-- single product view  -->
+{% extends 'home/base.html' %}
+{% load static %}
+{% load cart %}
+{% load widget_tweaks %}
+{% block content %}
+<br><br>
+<div class="container" style="min-height:720px;">
+        <div class="row">
+            <div class="col-lg-4 ms-auto py-3" > 
+                <img src="{{ pd.img.url }}" alt="not found" style="max-width: 400px; max-height: 500px;">
+             </div>
+            <div class="col-lg-7 ms-auto py-3">
+              
+                <h3>Name: {{ pd.name }} </h3>
+                <p>Category: <b>{{pd.productCategory}}</b> </p>
+                <p>Price: <b>{{ pd.price }}</b> FCFA </p>
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Passing value in filter --> 
+                    {% if pd|in_cart:request.session.cart %}
+                      <button type="submit" name="rmvFromCart" class="btn btn-danger btn-md my-0 p" >Remove From cart</button>
+                    {% else %}
+                      <!-- <button type="submit" name="addToCart" class="btn btn-primary btn-md my-0 p" >Add to cart </button> -->
+                      <button type="submit" name="addToCart" class="btn btn-md my-0 p" style="background-color: black; color: white;">
+                        Add to cart
+                      </button>
+
+                    {% endif %}
+                  </form>
+                <hr>
+                <br>
+                <p>{{pd.desc|safe}}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

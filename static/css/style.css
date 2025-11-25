@@ -1,0 +1,12 @@
+.navbar-yellow {
+  background-color: #FFD700 !important; /* jaune doré */
+}
+
+.navbar-yellow .nav-link {
+  color: #8B4513 !important; /* brun chocolat */
+}
+
+.navbar-yellow .nav-link:hover {
+  color: #E74C3C !important; /* rouge brique */
+}
+

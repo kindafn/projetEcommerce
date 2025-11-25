@@ -1,0 +1,163 @@
+/* === Palette chaude ===
+Jaune doré : #FFD700
+Orange doux : #FF8C00
+Rouge brique : #E74C3C
+Terracotta : #D2691E
+Brun chocolat : #8B4513
+*/
+
+/* === Navbar === */
+.navbar-yellow {
+  background-color: #FFD700 !important; /* fond jaune doré */
+}
+
+.navbar-yellow .nav-link {
+  color: #8B4513 !important; /* brun chocolat */
+  transition: color 0.3s ease;
+}
+
+.navbar-yellow .nav-link:hover {
+  color: #E74C3C !important; /* rouge brique au survol */
+}
+
+.navbar-yellow .navbar-brand {
+  color: #8B4513 !important;
+  font-weight: bold;
+}
+
+/* === Burger menu === */
+.burger {
+  margin: 5px;
+  display: none;
+  border-style: solid;
+  border-color: #FF8C00; /* orange chaud */
+  border-radius: 5px;
+  width: 35px;
+}
+
+.burger div {
+  height: 2px;
+  width: 20px;
+  background: #8B4513; /* brun chocolat */
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 992px) {
+  .burger {
+    display: block;
+  }
+
+  .nav_right {
+    position: absolute;
+    right: 0px;
+    min-height: 100vh;
+    width: 50%;
+    background: #D2691E; /* terracotta */
+    transform: scale(0);
+    transition: transform 0.5s linear;
+    z-index: 1;
+  }
+
+  .nav_active {
+    transform: translateX(-95%);
+  }
+
+  .toggle .lin1 {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .toggle .lin2 {
+    opacity: 0;
+  }
+
+  .toggle .lin3 {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+
+/* === Sidebar === */
+.sidebar {
+  background: #D2691E; /* terracotta */
+  margin-top: 70px;
+  padding-top: 30px;
+  position: fixed;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  transition: 0.5s;
+}
+
+.sidebar h4 {
+  color: #FFD700; /* jaune doré */
+}
+
+.sidebar a {
+  color: #FFD700; /* jaune doré */
+  display: block;
+  line-height: 60px;
+  text-decoration: none;
+  padding-left: 40px;
+  transition: 0.5s;
+}
+
+.sidebar a:hover {
+  background: #E74C3C; /* rouge brique */
+  color: #fff;
+}
+
+/* === Boutons === */
+.logout_btn, .btnSubmit {
+  background: #FF8C00; /* orange chaud */
+  color: #fff;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.logout_btn:hover, .btnSubmit:hover {
+  background: #E74C3C; /* rouge brique */
+}
+
+/* === Cart design === */
+.order-card {
+  color: #fff;
+}
+
+.bg-c-blue {
+  background: #FF8C00; /* orange chaud */
+}
+
+.bg-c-green {
+  background: #8B4513; /* brun chocolat */
+}
+
+.bg-c-yellow {
+  background: #FFD700; /* jaune doré */
+}
+
+.bg-c-pink {
+  background: #E74C3C; /* rouge brique */
+}
+
+.card {
+  box-shadow: 0 1px 3px rgba(4, 26, 55, 0.16);
+  border: 1px solid #8B4513;
+  margin-bottom: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+  padding: 25px;
+}
+
+.btn-black {
+  background-color: #000 !important; /* noir */
+  color: #fff !important;           /* texte blanc */
+  border: none;
+}
+
+.btn-black:hover {
+  background-color: #333 !important; /* gris foncé au survol */
+  color: #fff !important;
+}
+

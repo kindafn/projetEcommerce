@@ -1,0 +1,97 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% load cart %}
+{% block content %}
+<div class="container" style="min-height:100vh">
+        <div class="row">
+            <!-- <div class="col-md-2 border border-primary">
+                <ul>
+                    <li>samsung</li>
+                    <li>nokia</li>
+                    <li>blackbery</li>
+                    <br><br><br><br><br><br>
+                </ul>
+            </div> -->
+            <!-- search Product section at search page-->
+            <div class="col-md-10 ms-auto py-3">
+                <h1 class="text-center">Search Result</h1>
+                <p class="ms-3"><b class="text-success">{{total_searchItem}} </b>products found</p>
+                <div class="row">
+                  {% for product in searchItem %}
+                    <div class="col mb-2 d-flex justify-content-center">
+                        <div class="card shadow rounded" style="width: 15rem; height: 27rem;">
+                            <!-- image -->
+                            <a id="{{product.id}}" href="{% url 'product' product.id  %}" class="text-center p-1" style="height: 16rem;">
+                            <img src="{{ product.img.url }} " style="max-width: 90%; max-height: 16rem; text-align: center;" class="card-img-top" alt="...">
+                            </a>
+
+                            <!-- card body name(max-3 line) & price(max-oneline) -->
+                            <div class="card-body" style="max-height: 11rem;">
+                              <div style="max-height: 8rem;">
+                                  <p class="card-title" style="height: 4rem;">{{product.name}}</p>
+                              <h5 class="card-text" style="height: 2rem;">tk {{product.price}}</h5>
+                              </div>
+
+                              <!-- card button  -->
+                              <form action="/#{{product.id}}" method="post">
+                                {% csrf_token %}
+                                <input hidden="" type="text" name="idfromhtml" value="{{product.id}}">
+                                <!-- Passing value in filter -->
+					                {% if product|in_cart:request.session.cart %}
+                                <button class="btn btn-danger" type='submit' name='rmvFromCart' style="width: 100%;">Remove from Cart</button>
+                                {% else %}
+                                <button class="btn btn-primary" type='submit' name='addToCart' style="width: 100%;">Add to Cart</button>
+                                {% endif %}
+                            
+                            </form>
+                            </div>
+                            </div>
+                    </div>
+                    {% endfor %}       
+                    </div>
+                </div>
+        
+        </div>
+        <!-- for paginations -->
+
+    <br><br>
+    <div class="row">
+      <div class="col-md-6 text-muted">
+        Showing {{searchItem.start_index }} to {{searchItem.end_index }} out of
+        {{total_searchItem}}
+      </div>
+      <div class="col-md-6 text" style="display: flex; justify-content: end">
+        {% if searchItem.has_other_pages %}
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          {% if searchItem.has_previous %}
+          <button type="button" class="btn btn-outline-primary">
+            <a href="?page={{ searchItem.previous_page_number }}">&laquo;</a>
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-outline-primary disabled">
+            <span>&laquo;</span>
+          </button>
+          {% endif %} {% for i in searchItem.paginator.page_range %} 
+          {% if searchItem.number == i %}
+          <button type="button" class="btn btn-outline-primary active">
+            {{ i }}<span class="sr-only">(current)</span>
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-outline-primary">
+            <a href="?page={{ i }}" class="p-2">{{ i }}</a>
+          </button>
+          {% endif %} {% endfor %} {% if searchItem.has_next %}
+          <button type="button" class="btn btn-outline-primary">
+            <a href="?page={{ searchItem.next_page_number }}">&raquo;</a>
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-outline-primary disabled">
+            <span>&raquo;</span>
+          </button>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    </div>
+{% endblock %}
