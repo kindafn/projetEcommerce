@@ -25,7 +25,7 @@
 	sqlparse==0.4.2
 	whitenoise==5.3.0
 ### Database
-	Sqlite
+	PostgreSQL
 
 ## Base
 	Every page includes navebar & footer.
